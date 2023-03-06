@@ -4,15 +4,15 @@
 package price;
 
 public class App {
-    public String getGreeting() {
-        return "Hello World!";
-    }
-
+    // public String getGreeting() {
+    //     return "Hello World!";
+    // }
+    
+    // public static void main(String[] args) {
+    //     System.out.println(new App().getGreeting());
+    // }
+    
     public String getPriceLabel(String item, Double price) {
         return String.format("The price for item: %s is £%.2f", item, price);
-    }
-
-    public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
     }
 }
