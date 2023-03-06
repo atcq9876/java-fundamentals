@@ -12,4 +12,8 @@ public class TodoList {
     todos.add(task);
     return todos;
   }
+
+  public ArrayList<String> getTasks() {
+    return todos;
+  }
 }
