@@ -9,7 +9,7 @@ public class App {
     }
 
     public String getPriceLabel(String item, Double price) {
-        return "The price for item: ITEM is £PRICE";
+        return String.format("The price for item: %s is £%.2f", item, price);
     }
 
     public static void main(String[] args) {

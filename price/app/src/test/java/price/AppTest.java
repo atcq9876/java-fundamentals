@@ -14,6 +14,6 @@ public class AppTest {
 
     @Test public void appDisplaysItemNameAndPrice() {
         App classUnderTest = new App();
-        assertEquals("returns a string with item name and price", String.valueOf("The price for item: shoes is £49.99", classUnderTest.getPriceLabel("shoes", 49.99)));
+        assertEquals("returns a string with item name and price", String.valueOf("The price for item: shoes is £49.99"), classUnderTest.getPriceLabel("shoes", 49.99));
     }
 }
