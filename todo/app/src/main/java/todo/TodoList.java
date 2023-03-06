@@ -8,7 +8,7 @@ public class TodoList {
   public static void main(String[] args) {
   }
   
-  // void addTask(String task) {
-  //   todos.add(task);
-  // }
+  void addTask(String task) {
+    todos.add(task);
+  }
 }
