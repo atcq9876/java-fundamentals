@@ -1,10 +1,16 @@
 package wordgame;
 
 public class Game {
-  public static void main(String[] args) {
+  String wordToGuess;
+  Game(String word) {
+    wordToGuess = word;
   }
 
   public String getWordToGuess() {
-    return "B____";
+    return wordToGuess;
+  }
+
+  public static void main(String[] args) {
+
   }
 }
