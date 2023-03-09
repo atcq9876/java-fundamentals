@@ -7,10 +7,17 @@ public class Game {
   }
 
   public String getWordToGuess() {
-    return wordToGuess;
+    StringBuilder hiddenWord = new StringBuilder();
+    for (int i = 0; i < wordToGuess.length(); i++) {
+      if (i == 0) {
+        hiddenWord.append(wordToGuess.charAt(0));
+      } else {
+        hiddenWord.append("_");
+      }
+    }
+    return hiddenWord.toString();
   }
 
   public static void main(String[] args) {
-
   }
 }
