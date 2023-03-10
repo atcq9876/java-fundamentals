@@ -5,11 +5,6 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 public class GameTest {
-  // @Test public void testGetsWordToGuess() {
-  //   Game game = new Game("MAKERS");
-  //   assertEquals(game.getWordToGuess(), "M_____");
-  // }
-
   @Test public void testGetsRemainingAttempts() {
     WordGenerator mockedWordGenerator = mock(WordGenerator.class);
     Game game = new Game(mockedWordGenerator);
