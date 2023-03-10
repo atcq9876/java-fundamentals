@@ -3,8 +3,7 @@ package wordgame;
 public class Game {
   Integer remainingAttempts = 10;
   String wordToGuess;
-  Game() {
-    WordGenerator wordGenerator = new WordGenerator();
+  Game(WordGenerator wordGenerator) {
     wordToGuess = wordGenerator.getRandomWordFromDictionary();
   }
   public static void main(String[] args) {}
