@@ -7,9 +7,9 @@ public class WordGenerator {
 
   public static void main(String[] args) {}
 
-  // public String getRandomWordFromDictionary() {
-  //   Random rand = new Random();
-  //   Integer randomInt = rand.nextInt(DICTIONARY.length);
-  //   return DICTIONARY[randomInt];
-  // }
+  public String getRandomWordFromDictionary() {
+    Random rand = new Random();
+    Integer randomInt = rand.nextInt(DICTIONARY.length);
+    return DICTIONARY[randomInt];
+  }
 }
