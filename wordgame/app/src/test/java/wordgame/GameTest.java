@@ -22,4 +22,11 @@ public class GameTest {
     Game game = new Game(mockedWordGenerator);
     assertEquals(game.wordToGuess, "RANDOM");
   }
+
+  @Test public void testGetsWordToGuess() {
+    WordGenerator mockedWordGenerator = mock(WordGenerator.class);
+    when(mockedWordGenerator.getRandomWordFromDictionary()).thenReturn("RANDOM");
+    Game game = new Game(mockedWordGenerator);
+    assertEquals(game.getWordToGuess(), "R_____");
+  }
 }
