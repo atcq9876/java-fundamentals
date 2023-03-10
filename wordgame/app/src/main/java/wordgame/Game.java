@@ -1,10 +1,13 @@
 package wordgame;
 
+import java.util.Random;
+
 public class Game {
   Integer remainingAttempts = 10;
+  static final String[] DICTIONARY = {"MAKERS", "CANDIES", "DEVELOPER", "LONDON"};
   String wordToGuess;
-  Game(String word) {
-    wordToGuess = word;
+  Game() {
+    wordToGuess = getRandomWordFromDictionary();
   }
   public static void main(String[] args) {}
 
@@ -20,6 +23,11 @@ public class Game {
     return remainingAttempts;
   }
 
+  public String getRandomWordFromDictionary() {
+    Random rand = new Random();
+    Integer randomInt = rand.nextInt(DICTIONARY.length);
+    return DICTIONARY[randomInt];
+  }
 }
 
 
