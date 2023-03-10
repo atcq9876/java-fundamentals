@@ -1,10 +1,12 @@
 package wordgame;
 
 public class Game {
+  Integer remainingAttempts = 10;
   String wordToGuess;
   Game(String word) {
     wordToGuess = word;
   }
+  public static void main(String[] args) {}
 
   public String getWordToGuess() {
     StringBuilder hiddenWordSB = new StringBuilder(wordToGuess);
@@ -14,8 +16,10 @@ public class Game {
     return hiddenWordSB.toString();
   }
 
-  public static void main(String[] args) {
+  public Integer getRemainingAttempts() {
+    return remainingAttempts;
   }
+
 }
 
 
