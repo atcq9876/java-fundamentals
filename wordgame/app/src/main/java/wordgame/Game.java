@@ -6,9 +6,11 @@ public class Game {
   Integer remainingAttempts = 10;
   ArrayList<Character> guessedLetters = new ArrayList<Character>();
   String wordToGuess;
+  
   Game(WordGenerator wordGenerator) {
     this.wordToGuess = wordGenerator.getRandomWordFromDictionary();
   }
+
   public static void main(String[] args) {}
 
   public String getWordToGuess() {
