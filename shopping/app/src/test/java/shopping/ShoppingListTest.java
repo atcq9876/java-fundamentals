@@ -2,6 +2,7 @@ package shopping;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 import java.util.ArrayList;
 
 public class ShoppingListTest {
