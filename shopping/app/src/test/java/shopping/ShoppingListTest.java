@@ -5,5 +5,9 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 
 public class ShoppingListTest {
-  
+  @Test public void testGetItems() {
+    ShoppingList shoppingList = new ShoppingList();
+    ArrayList<ShoppingItem> expectedItems = new ArrayList<ShoppingItem>();
+    assertEquals(shoppingList.getItems(), expectedItems);
+  }
 }
