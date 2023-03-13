@@ -24,4 +24,18 @@ public class GameTest {
     Game game = new Game(mockedWordGenerator);
     assertEquals(game.getWordToGuess(), "R_____");
   }
+
+  @Test public void testGuessLetterOne() {
+    WordGenerator mockedWordGenerator = mock(WordGenerator.class);
+    when(mockedWordGenerator.getRandomWordFromDictionary()).thenReturn("LIGHT");
+    Game game = new Game(mockedWordGenerator);
+    assertEquals(game.guessLetter('A'), "Unlucky, you have 9 attempts remaining, try again");
+  }
+
+  @Test public void testGuessLetterTwo() {
+    WordGenerator mockedWordGenerator = mock(WordGenerator.class);
+    when(mockedWordGenerator.getRandomWordFromDictionary()).thenReturn("BELT");
+    Game game = new Game(mockedWordGenerator);
+    assertEquals(game.guessLetter('B'), "The word contains that letter! You have 10 attempts remaining");
+  }
 }

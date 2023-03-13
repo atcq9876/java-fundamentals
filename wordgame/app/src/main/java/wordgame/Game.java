@@ -19,6 +19,14 @@ public class Game {
   public Integer getRemainingAttempts() {
     return remainingAttempts;
   }
+
+  public String guessLetter(Character guess) {
+    if (wordToGuess.indexOf(guess) >= 0) {
+      return "The word contains that letter! You have 10 attempts remaining";
+    } else {
+      return "Unlucky, you have 9 attempts remaining, try again";
+    }
+  }
 }
 
 
