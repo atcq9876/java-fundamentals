@@ -1,7 +1,10 @@
 package wordgame;
 
+import java.util.ArrayList;
+
 public class Game {
   Integer remainingAttempts = 10;
+  ArrayList<Character> guessedLetters = new ArrayList<Character>();
   String wordToGuess;
   Game(WordGenerator wordGenerator) {
     wordToGuess = wordGenerator.getRandomWordFromDictionary();
@@ -23,8 +26,10 @@ public class Game {
   public String guessLetter(Character guess) {
     // If word contains the guessed character
     if (wordToGuess.indexOf(guess) >= 0) {
+      guessedLetters.add(guess);
       return "The word contains that letter! You have " + remainingAttempts + " attempts remaining";
     } else {
+      guessedLetters.add(guess);
       remainingAttempts--;
       return "Unlucky, you have " + remainingAttempts + " attempts remaining, try again";
     }

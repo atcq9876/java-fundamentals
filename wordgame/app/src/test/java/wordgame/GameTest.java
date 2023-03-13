@@ -3,6 +3,7 @@ package wordgame;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
+import java.util.ArrayList;
 
 public class GameTest {
   @Test public void testGetsRemainingAttempts() {
@@ -53,5 +54,17 @@ public class GameTest {
     Game game = new Game(mockedWordGenerator);
     game.guessLetter('C');
     assertEquals(game.guessLetter('U'), "The word contains that letter! You have 9 attempts remaining");
+  }
+
+  @Test public void testGuessedLettersAreStored() {
+    WordGenerator mockedWordGenerator = mock(WordGenerator.class);
+    when(mockedWordGenerator.getRandomWordFromDictionary()).thenReturn("ALPHABET");
+    Game game = new Game(mockedWordGenerator);
+    game.guessLetter('A');
+    game.guessLetter('C');
+    ArrayList<Character> expectedChars = new ArrayList<Character>();
+    expectedChars.add('A');
+    expectedChars.add('C');
+    assertEquals(game.guessedLetters, expectedChars);
   }
 }
