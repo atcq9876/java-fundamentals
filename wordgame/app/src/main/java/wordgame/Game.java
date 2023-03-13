@@ -7,7 +7,7 @@ public class Game {
   ArrayList<Character> guessedLetters = new ArrayList<Character>();
   String wordToGuess;
   Game(WordGenerator wordGenerator) {
-    wordToGuess = wordGenerator.getRandomWordFromDictionary();
+    this.wordToGuess = wordGenerator.getRandomWordFromDictionary();
   }
   public static void main(String[] args) {}
 
@@ -20,20 +20,20 @@ public class Game {
   }
 
   public Integer getRemainingAttempts() {
-    return remainingAttempts;
+    return this.remainingAttempts;
   }
 
   public String guessLetter(Character guess) {
     // If word contains the guessed character
-    if (guessedLetters.contains(guess)) {
+    if (this.guessedLetters.contains(guess)) {
       return "You've already guessed that letter, try another";
     } else if (wordToGuess.indexOf(guess) >= 0) {
-      guessedLetters.add(guess);
-      return "The word contains that letter! You have " + remainingAttempts + " attempts remaining";
+      this.guessedLetters.add(guess);
+      return "The word contains that letter! You have " + this.remainingAttempts + " attempts remaining";
     } else {
-      guessedLetters.add(guess);
-      remainingAttempts--;
-      return "Unlucky, you have " + remainingAttempts + " attempts remaining, try again";
+      this.guessedLetters.add(guess);
+      this.remainingAttempts--;
+      return "Unlucky, you have " + this.remainingAttempts + " attempts remaining, try again";
     }
   }
 }
