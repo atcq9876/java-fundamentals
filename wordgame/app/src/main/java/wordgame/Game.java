@@ -3,6 +3,7 @@ package wordgame;
 import java.util.ArrayList;
 
 public class Game {
+  // Consider making these instance variables private
   Integer remainingAttempts = 10;
   ArrayList<Character> guessedLetters = new ArrayList<Character>();
   String wordToGuess;
