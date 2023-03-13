@@ -25,7 +25,9 @@ public class Game {
 
   public String guessLetter(Character guess) {
     // If word contains the guessed character
-    if (wordToGuess.indexOf(guess) >= 0) {
+    if (guessedLetters.contains(guess)) {
+      return "You've already guessed that letter, try another";
+    } else if (wordToGuess.indexOf(guess) >= 0) {
       guessedLetters.add(guess);
       return "The word contains that letter! You have " + remainingAttempts + " attempts remaining";
     } else {

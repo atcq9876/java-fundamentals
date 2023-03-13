@@ -67,4 +67,15 @@ public class GameTest {
     expectedChars.add('C');
     assertEquals(game.guessedLetters, expectedChars);
   }
+
+  @Test public void testRepeatedGuessedWords() {
+    WordGenerator mockedWordGenerator = mock(WordGenerator.class);
+    when(mockedWordGenerator.getRandomWordFromDictionary()).thenReturn("ALPHABET");
+    Game game = new Game(mockedWordGenerator);
+    game.guessLetter('A');
+    ArrayList<Character> expectedChars = new ArrayList<Character>();
+    expectedChars.add('A');
+    assertEquals(game.guessLetter('A'), "You've already guessed that letter, try another");
+    assertEquals(game.guessedLetters, expectedChars);
+  }
 }
