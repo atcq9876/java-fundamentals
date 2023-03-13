@@ -21,10 +21,12 @@ public class Game {
   }
 
   public String guessLetter(Character guess) {
+    // If word contains the guessed character
     if (wordToGuess.indexOf(guess) >= 0) {
       return "The word contains that letter! You have 10 attempts remaining";
     } else {
-      return "Unlucky, you have 9 attempts remaining, try again";
+      remainingAttempts--;
+      return "Unlucky, you have " + remainingAttempts + " attempts remaining, try again";
     }
   }
 }
