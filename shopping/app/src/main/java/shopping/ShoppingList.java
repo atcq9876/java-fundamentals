@@ -8,4 +8,8 @@ public class ShoppingList {
   public ArrayList<String> getItems() {
     return list;
   }
+
+  public void addItem(String item) {
+    list.add(item);
+  }
 }

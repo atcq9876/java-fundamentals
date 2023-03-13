@@ -11,6 +11,14 @@ public class ShoppingListTest {
     ArrayList<String> expectedItems = new ArrayList<String>();
     assertEquals(shoppingList.getItems(), expectedItems);
   }
+
+  @Test public void testAddItem() {
+    ShoppingList shoppingList = new ShoppingList();
+    ArrayList<String> expectedItems = new ArrayList<String>();
+    expectedItems.add("Strawberries");
+    shoppingList.addItem("Strawberries");
+    assertEquals(shoppingList.getItems(), expectedItems);
+  }
 }
 
 // TEST FOR WHEN CHANGING FROM STRING ARRAYLISTS TO SHOPPINGITEM LISTS
