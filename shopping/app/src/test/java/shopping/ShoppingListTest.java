@@ -8,7 +8,14 @@ import java.util.ArrayList;
 public class ShoppingListTest {
   @Test public void testGetItems() {
     ShoppingList shoppingList = new ShoppingList();
-    ArrayList<ShoppingItem> expectedItems = new ArrayList<ShoppingItem>();
+    ArrayList<String> expectedItems = new ArrayList<String>();
     assertEquals(shoppingList.getItems(), expectedItems);
   }
 }
+
+// TEST FOR WHEN CHANGING FROM STRING ARRAYLISTS TO SHOPPINGITEM LISTS
+// @Test public void testGetItems() {
+//   ShoppingList shoppingList = new ShoppingList();
+//   ArrayList<ShoppingItem> expectedItems = new ArrayList<ShoppingItem>();
+//   assertEquals(shoppingList.getItems(), expectedItems);
+// }

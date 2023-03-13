@@ -3,9 +3,9 @@ package shopping;
 import java.util.ArrayList;
 
 public class ShoppingList {
-  ArrayList<ShoppingItem> list = new ArrayList<ShoppingItem>();
+  ArrayList<String> list = new ArrayList<String>();
 
-  public ArrayList<ShoppingItem> getItems() {
+  public ArrayList<String> getItems() {
     return list;
   }
 }
