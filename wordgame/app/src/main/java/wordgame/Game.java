@@ -14,20 +14,25 @@ public class Game {
 
   public static void main(String[] args) {}
 
-  public String getWordToGuess() {
-    StringBuilder hiddenWordSB = new StringBuilder(wordToGuess);
-    for (int i = 1; i < wordToGuess.length(); i++) {
-      hiddenWordSB.replace(i, hiddenWordSB.length(), "_");
+public String getWordToGuess() {
+  StringBuilder hiddenWordSB = new StringBuilder();
+  for (int i = 0; i < this.wordToGuess.length(); i++) {
+    if (i == 0) {
+      hiddenWordSB.append(wordToGuess.charAt(0));
+    } else if (this.guessedLetters.contains(this.wordToGuess.charAt(i))) {
+      hiddenWordSB.append(wordToGuess.charAt(i));
+    } else {
+      hiddenWordSB.append("_");
     }
-    return hiddenWordSB.toString();
   }
+  return hiddenWordSB.toString();
+}
 
   public Integer getRemainingAttempts() {
     return this.remainingAttempts;
   }
 
   public String guessLetter(Character guess) {
-    // If word contains the guessed character
     if (this.guessedLetters.contains(guess)) {
       return "You've already guessed that letter, try another";
     } else if (wordToGuess.indexOf(guess) >= 0) {
@@ -40,17 +45,3 @@ public class Game {
     }
   }
 }
-
-
-// ALTERNATIVE GETWORDTOGUESS METHOD:
-// public String getWordToGuess() {
-//   StringBuilder hiddenWordSB = new StringBuilder();
-//   for (int i = 0; i < wordToGuess.length(); i++) {
-//     if (i == 0) {
-//       hiddenWordSB.append(wordToGuess.charAt(0));
-//     } else {
-//       hiddenWordSB.append("_");
-//     }
-//   }
-//   return hiddenWordSB.toString();
-// }

@@ -78,4 +78,14 @@ public class GameTest {
     assertEquals(game.guessLetter('A'), "You've already guessed that letter, try another");
     assertEquals(game.guessedLetters, expectedChars);
   }
+
+  @Test public void testCorrectlyGuessedLetterIsShownInHiddenWord() {
+    WordGenerator mockedWordGenerator = mock(WordGenerator.class);
+    when(mockedWordGenerator.getRandomWordFromDictionary()).thenReturn("RANDOM");
+    Game game = new Game(mockedWordGenerator);
+    assertEquals(game.getWordToGuess(), "R_____");
+
+    game.guessLetter('M');
+    assertEquals(game.getWordToGuess(), "R____M");
+  }
 }
