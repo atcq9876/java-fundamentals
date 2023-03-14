@@ -83,9 +83,9 @@ public class GameTest {
     WordGenerator mockedWordGenerator = mock(WordGenerator.class);
     when(mockedWordGenerator.getRandomWordFromDictionary()).thenReturn("RANDOM");
     Game game = new Game(mockedWordGenerator);
+    
     assertEquals(game.getWordToGuess(), "R_____");
-
-    game.guessLetter('M');
+    assertEquals(game.guessLetter('M'), "The word contains that letter! You have 10 attempts remaining");
     assertEquals(game.getWordToGuess(), "R____M");
   }
 }
