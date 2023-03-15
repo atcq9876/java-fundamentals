@@ -30,7 +30,7 @@ public class GameTest {
     WordGenerator mockedWordGenerator = mock(WordGenerator.class);
     when(mockedWordGenerator.getRandomWordFromDictionary()).thenReturn("LIGHT");
     Game game = new Game(mockedWordGenerator);
-    assertEquals(game.guessLetter('A'), "Unlucky, you have 9 attempts remaining, try again");
+    assertEquals(game.guessLetter('A'), "Unlucky, you have 9 attempts remaining, try again.");
   }
   
   @Test public void testTwoIncorrectGuessLetters() {
@@ -38,14 +38,14 @@ public class GameTest {
     when(mockedWordGenerator.getRandomWordFromDictionary()).thenReturn("SHOWER");
     Game game = new Game(mockedWordGenerator);
     game.guessLetter('A');
-    assertEquals(game.guessLetter('B'), "Unlucky, you have 8 attempts remaining, try again");
+    assertEquals(game.guessLetter('B'), "Unlucky, you have 8 attempts remaining, try again.");
   }
 
   @Test public void testOneCorrectGuessLetter() {
     WordGenerator mockedWordGenerator = mock(WordGenerator.class);
     when(mockedWordGenerator.getRandomWordFromDictionary()).thenReturn("BELT");
     Game game = new Game(mockedWordGenerator);
-    assertEquals(game.guessLetter('B'), "The word contains that letter! You have 10 attempts remaining");
+    assertEquals(game.guessLetter('B'), "The word contains that letter! You have 10 attempts remaining.");
   }
 
   @Test public void testIncorrectAndCorrectGuessLetters() {
@@ -53,7 +53,7 @@ public class GameTest {
     when(mockedWordGenerator.getRandomWordFromDictionary()).thenReturn("HOUSE");
     Game game = new Game(mockedWordGenerator);
     game.guessLetter('C');
-    assertEquals(game.guessLetter('U'), "The word contains that letter! You have 9 attempts remaining");
+    assertEquals(game.guessLetter('U'), "The word contains that letter! You have 9 attempts remaining.");
   }
 
   @Test public void testGuessedLettersAreStored() {
@@ -75,7 +75,7 @@ public class GameTest {
     game.guessLetter('A');
     ArrayList<Character> expectedChars = new ArrayList<Character>();
     expectedChars.add('A');
-    assertEquals(game.guessLetter('A'), "You've already guessed that letter, try another");
+    assertEquals(game.guessLetter('A'), "You've already guessed that letter, try another.");
     assertEquals(game.guessedLetters, expectedChars);
   }
 
@@ -85,7 +85,7 @@ public class GameTest {
     Game game = new Game(mockedWordGenerator);
     
     assertEquals(game.getWordToGuess(), "R_____");
-    assertEquals(game.guessLetter('M'), "The word contains that letter! You have 10 attempts remaining");
+    assertEquals(game.guessLetter('M'), "The word contains that letter! You have 10 attempts remaining.");
     assertEquals(game.getWordToGuess(), "R____M");
   }
 }
