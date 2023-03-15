@@ -9,9 +9,13 @@ public class App {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         Game game = new Game(new WordGenerator());
-        System.out.println(game.getWordToGuess());
-        Character guess = (in.nextLine()).charAt(0);
-        System.out.println(game.guessLetter(guess));
+        Integer remainingAttempts = 10;
+        while (remainingAttempts > 0) {
+            System.out.println(game.getWordToGuess());
+            Character guess = (in.nextLine()).charAt(0);
+            System.out.println(game.guessLetter(guess));
+            remainingAttempts = game.getRemainingAttempts();
+        }
         in.close();
     }
 }
