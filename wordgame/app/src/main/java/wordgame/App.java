@@ -3,12 +3,15 @@
  */
 package wordgame;
 
-public class App {
-    public String getGreeting() {
-        return "Hello World!";
-    }
+import java.util.Scanner;
 
+public class App {
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+        Scanner in = new Scanner(System.in);
+        Game game = new Game(new WordGenerator());
+        System.out.println(game.getWordToGuess());
+        Character guess = (in.nextLine()).charAt(0);
+        System.out.println(game.guessLetter(guess));
+        in.close();
     }
 }
