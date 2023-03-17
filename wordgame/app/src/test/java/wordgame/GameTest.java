@@ -84,4 +84,29 @@ public class GameTest {
     assertEquals(game.guessLetter('M'), true);
     assertEquals(game.getWordToGuess(), "R____M");
   }
+
+  @Test public void testIsGameLostFalse() {
+    WordGenerator mockedWordGenerator = mock(WordGenerator.class);
+    when(mockedWordGenerator.getRandomWordFromDictionary()).thenReturn("TEST");
+    Game game = new Game(mockedWordGenerator);
+    game.guessLetter('A');
+    assertEquals(game.isGameLost(), false);
+  }
+
+  @Test public void testIsGameLostTrue() {
+    WordGenerator mockedWordGenerator = mock(WordGenerator.class);
+    when(mockedWordGenerator.getRandomWordFromDictionary()).thenReturn("TEST");
+    Game game = new Game(mockedWordGenerator);
+    game.guessLetter('A');
+    game.guessLetter('B');
+    game.guessLetter('C');
+    game.guessLetter('D');
+    game.guessLetter('A');
+    game.guessLetter('B');
+    game.guessLetter('C');
+    game.guessLetter('D');
+    game.guessLetter('A');
+    game.guessLetter('B');
+    assertEquals(game.isGameLost(), true);
+  }
 }

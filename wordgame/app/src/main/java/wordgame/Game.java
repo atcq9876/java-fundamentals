@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Game {
   // Consider making these instance variables private
   Integer remainingAttempts = 10;
+  Boolean gameLost = false;
   ArrayList<Character> guessedLetters = new ArrayList<Character>();
   String wordToGuess;
   
@@ -32,6 +33,10 @@ public String getWordToGuess() {
     return this.remainingAttempts;
   }
 
+  public Boolean isGameLost() {
+    return gameLost;
+  }
+
   public Boolean guessLetter(Character guess) {
     // Add some errot checking for input, e.g., don't allow user to enter empty string
     // Could do this in a separate error checking function
@@ -42,6 +47,7 @@ public String getWordToGuess() {
     } else {
       this.guessedLetters.add(guess);
       this.remainingAttempts--;
+      if (remainingAttempts == 0) { gameLost = true; }
       return false;
     }
   }
