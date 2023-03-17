@@ -9,25 +9,24 @@ public class App {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Game game = new Game(new WordGenerator());
-        Integer remainingAttempts = 10;
+        Boolean gameLost = false;
 
         System.out.println("Welcome! Today the word to guess is:");
         do {
             System.out.println(game.getWordToGuess());
-            System.out.println("Enter a letter to make a guess (" + remainingAttempts + " attempts remaining):");
+            System.out.println("Enter a letter to make a guess (" + game.getRemainingAttempts() + " attempts remaining):");
             Character guess = (scanner.nextLine()).charAt(0);
             Boolean result = game.guessLetter(guess);
             if (result) {
                 System.out.println("Right!");
             } else {
                 System.out.println("Wrong...");
+                game.isGameLost();
             }
-            remainingAttempts = game.getRemainingAttempts();
-        } while (remainingAttempts > 0);
+            gameLost = game.isGameLost();
+        } while (!gameLost);
         scanner.close();
 
-        if (remainingAttempts == 0) {
-            System.out.println("Game over... better luck next time!");
-        }
+        if (gameLost) { System.out.println("Game over... better luck next time!"); }
     }
 }
