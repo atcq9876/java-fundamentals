@@ -10,14 +10,24 @@ public class App {
         Scanner scanner = new Scanner(System.in);
         Game game = new Game(new WordGenerator());
         Integer remainingAttempts = 10;
+
         System.out.println("Welcome! Today the word to guess is:");
-        while (remainingAttempts > 0) {
+        do {
             System.out.println(game.getWordToGuess());
-            System.out.println("Enter a letter to make a guess:");
+            System.out.println("Enter a letter to make a guess (" + remainingAttempts + " attempts remaining):");
             Character guess = (scanner.nextLine()).charAt(0);
-            System.out.println(game.guessLetter(guess));
+            Boolean result = game.guessLetter(guess);
+            if (result) {
+                System.out.println("Right!");
+            } else {
+                System.out.println("Wrong...");
+            }
             remainingAttempts = game.getRemainingAttempts();
-        }
+        } while (remainingAttempts > 0);
         scanner.close();
+
+        if (remainingAttempts == 0) {
+            System.out.println("Game over... better luck next time!");
+        }
     }
 }
