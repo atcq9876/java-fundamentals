@@ -33,6 +33,7 @@ public String getWordToGuess() {
   }
 
   public String guessLetter(Character guess) {
+    guess = Character.toUpperCase(guess);
     if (this.guessedLetters.contains(guess)) {
       return "You've already guessed that letter, try another.";
     } else if (wordToGuess.indexOf(guess) >= 0) {

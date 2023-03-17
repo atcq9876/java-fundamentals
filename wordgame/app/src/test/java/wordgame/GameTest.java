@@ -48,6 +48,13 @@ public class GameTest {
     assertEquals(game.guessLetter('B'), "The word contains that letter! You have 10 attempts remaining.");
   }
 
+  @Test public void testLowerCaseCorrectGuessLetter() {
+    WordGenerator mockedWordGenerator = mock(WordGenerator.class);
+    when(mockedWordGenerator.getRandomWordFromDictionary()).thenReturn("BELT");
+    Game game = new Game(mockedWordGenerator);
+    assertEquals(game.guessLetter('e'), "The word contains that letter! You have 10 attempts remaining.");
+  }
+
   @Test public void testIncorrectAndCorrectGuessLetters() {
     WordGenerator mockedWordGenerator = mock(WordGenerator.class);
     when(mockedWordGenerator.getRandomWordFromDictionary()).thenReturn("HOUSE");
@@ -68,7 +75,7 @@ public class GameTest {
     assertEquals(game.guessedLetters, expectedChars);
   }
 
-  @Test public void testRepeatedGuessedWords() {
+  @Test public void testRepeatedGuessedLetters() {
     WordGenerator mockedWordGenerator = mock(WordGenerator.class);
     when(mockedWordGenerator.getRandomWordFromDictionary()).thenReturn("ALPHABET");
     Game game = new Game(mockedWordGenerator);
