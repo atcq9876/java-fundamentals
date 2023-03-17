@@ -128,4 +128,15 @@ public class GameTest {
     game.guessLetter('H');
     assertEquals(game.isGameWon(), true);
   }
+
+  @Test public void testIsGameWonTrueRepeatedLetters() {
+    WordGenerator mockedWordGenerator = mock(WordGenerator.class);
+    when(mockedWordGenerator.getRandomWordFromDictionary()).thenReturn("LONDON");
+    Game game = new Game(mockedWordGenerator);
+    game.guessLetter('L');
+    game.guessLetter('O');
+    game.guessLetter('N');
+    game.guessLetter('D');
+    assertEquals(game.isGameWon(), true);
+  }
 }
