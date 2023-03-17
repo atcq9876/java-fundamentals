@@ -7,17 +7,17 @@ import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         Game game = new Game(new WordGenerator());
         Integer remainingAttempts = 10;
         System.out.println("Welcome! Today the word to guess is:");
         while (remainingAttempts > 0) {
             System.out.println(game.getWordToGuess());
             System.out.println("Enter a letter to make a guess:");
-            Character guess = (in.nextLine()).charAt(0);
+            Character guess = (scanner.nextLine()).charAt(0);
             System.out.println(game.guessLetter(guess));
             remainingAttempts = game.getRemainingAttempts();
         }
-        in.close();
+        scanner.close();
     }
 }
