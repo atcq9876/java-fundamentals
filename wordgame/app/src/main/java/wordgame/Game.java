@@ -33,6 +33,8 @@ public String getWordToGuess() {
   }
 
   public Boolean guessLetter(Character guess) {
+    // Add some errot checking for input, e.g., don't allow user to enter empty string
+    // Could do this in a separate error checking function
     guess = Character.toUpperCase(guess);
     if (wordToGuess.indexOf(guess) >= 0) {
       this.guessedLetters.add(guess);
