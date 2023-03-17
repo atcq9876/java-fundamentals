@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class Game {
   // Consider making these instance variables private
   Integer remainingAttempts = 10;
-  Boolean gameLost = false;
   ArrayList<Character> guessedLetters = new ArrayList<Character>();
   String wordToGuess;
   
@@ -33,8 +32,12 @@ public String getWordToGuess() {
     return this.remainingAttempts;
   }
 
+  public Boolean isGameWon() {
+    return getWordToGuess().indexOf("_") == -1;
+  }
+
   public Boolean isGameLost() {
-    return gameLost;
+    return remainingAttempts == 0;
   }
 
   public Boolean guessLetter(Character guess) {
@@ -47,7 +50,7 @@ public String getWordToGuess() {
     } else {
       this.guessedLetters.add(guess);
       this.remainingAttempts--;
-      if (remainingAttempts == 0) { gameLost = true; }
+      this.isGameLost();
       return false;
     }
   }
