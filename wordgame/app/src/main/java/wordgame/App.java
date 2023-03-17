@@ -9,7 +9,6 @@ public class App {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Game game = new Game(new WordGenerator());
-        Boolean gameLost = false;
 
         System.out.println("Welcome! Today the word to guess is:");
         do {
@@ -21,12 +20,14 @@ public class App {
                 System.out.println("Right!");
             } else {
                 System.out.println("Wrong...");
-                game.isGameLost();
             }
-            gameLost = game.isGameLost();
-        } while (!gameLost);
+        } while (!game.isGameLost() && !game.isGameWon());
         scanner.close();
 
-        if (gameLost) { System.out.println("Game over... better luck next time!"); }
+        if (game.isGameLost()) {
+            System.out.println("Game over... better luck next time!");
+        } else if (game.isGameWon()) {
+            System.out.println("Congrats, you guessed the word " + game.getWordToGuess() + " correctly!");
+        }
     }
 }
