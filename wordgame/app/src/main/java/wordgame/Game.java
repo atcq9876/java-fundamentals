@@ -32,17 +32,15 @@ public String getWordToGuess() {
     return this.remainingAttempts;
   }
 
-  public String guessLetter(Character guess) {
+  public Boolean guessLetter(Character guess) {
     guess = Character.toUpperCase(guess);
-    if (this.guessedLetters.contains(guess)) {
-      return "You've already guessed that letter, try another.";
-    } else if (wordToGuess.indexOf(guess) >= 0) {
+    if (wordToGuess.indexOf(guess) >= 0) {
       this.guessedLetters.add(guess);
-      return "The word contains that letter! You have " + this.remainingAttempts + " attempts remaining.";
+      return true;
     } else {
       this.guessedLetters.add(guess);
       this.remainingAttempts--;
-      return "Unlucky, you have " + this.remainingAttempts + " attempts remaining, try again.";
+      return false;
     }
   }
 }
