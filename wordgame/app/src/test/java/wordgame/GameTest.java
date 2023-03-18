@@ -153,6 +153,38 @@ public class GameTest {
     assertEquals(game.isGameWon(), true);
   }
 
+  @Test public void throwExceptionIfEmptyStringIsGuessed() {
+    WordGenerator mockedWordGenerator = mock(WordGenerator.class);
+    when(mockedWordGenerator.getRandomWordFromDictionary()).thenReturn("TEST");
+    Masker mockedMasker = mock(Masker.class);
+    Game game = new Game(mockedWordGenerator, mockedMasker);
+    
+    Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+      game.guessLetter("");
+    });
+
+    String expectedMessage = "You must enter a letter when making a guess";
+    String actualMessage = exception.getMessage();
+
+    assertTrue(actualMessage.contains(expectedMessage));
+  }
+
+  @Test public void throwExceptionIfGuessIsMoreThanOneCharacter() {
+    WordGenerator mockedWordGenerator = mock(WordGenerator.class);
+    when(mockedWordGenerator.getRandomWordFromDictionary()).thenReturn("TEST");
+    Masker mockedMasker = mock(Masker.class);
+    Game game = new Game(mockedWordGenerator, mockedMasker);
+    
+    Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+      game.guessLetter("AB");
+    });
+
+    String expectedMessage = "Please only enter one letter";
+    String actualMessage = exception.getMessage();
+
+    assertTrue(actualMessage.contains(expectedMessage));
+  }
+
   @Test public void throwExceptionIfGuessedCharacterIsNumber() {
     WordGenerator mockedWordGenerator = mock(WordGenerator.class);
     when(mockedWordGenerator.getRandomWordFromDictionary()).thenReturn("TEST");
