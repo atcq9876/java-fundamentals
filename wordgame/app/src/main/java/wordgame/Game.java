@@ -32,13 +32,7 @@ public class Game {
   }
 
   public Boolean guessLetter(String guess) {
-    if (guess == "" || guess == null) { throw new IllegalArgumentException("You must enter a letter when making a guess"); }
-    if (guess.length() > 1) { throw new IllegalArgumentException("Please only enter one letter"); }
-    Character charGuess = guess.charAt(0);
-    if (!Character.isLetter(charGuess)) { throw new IllegalArgumentException("Please only enter letters"); }
-    // Could move error checking to a separate error checking function
-
-    charGuess = Character.toUpperCase(charGuess);
+    Character charGuess = this.validateGuessedLetter(guess);
     if (wordToGuess.indexOf(charGuess) >= 0) {
       this.guessedLetters.add(charGuess);
       return true;
@@ -47,5 +41,13 @@ public class Game {
       this.remainingAttempts--;
       return false;
     }
+  }
+
+  private Character validateGuessedLetter(String guess) {
+    if (guess == "" || guess == null) { throw new IllegalArgumentException("You must enter a letter when making a guess"); }
+    if (guess.length() > 1) { throw new IllegalArgumentException("Please only enter one letter"); }
+    Character charGuess = guess.charAt(0);
+    if (!Character.isLetter(charGuess)) { throw new IllegalArgumentException("Please only enter letters"); }
+    return Character.toUpperCase(charGuess);
   }
 }
