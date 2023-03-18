@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class App {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Game game = new Game(new WordGenerator());
+        Game game = new Game(new WordGenerator(), new Masker());
 
         System.out.println("Welcome! Today the word to guess is:");
         do {
