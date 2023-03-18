@@ -31,16 +31,19 @@ public class Game {
     return remainingAttempts == 0;
   }
 
-  public Boolean guessLetter(Character guess) {
-    // Add some error checking for input, e.g., don't allow user to enter empty string
+  public Boolean guessLetter(String guess) {
+    if (guess == "" || guess == null) { throw new IllegalArgumentException("You must enter a letter when making a guess"); }
     // Error checking: only take one character
-    // Could do this in a separate error checking function
-    guess = Character.toUpperCase(guess);
-    if (wordToGuess.indexOf(guess) >= 0) {
-      this.guessedLetters.add(guess);
+    Character charGuess = guess.charAt(0);
+    if (!Character.isLetter(charGuess)) { throw new IllegalArgumentException("Please only enter letters"); }
+    // Could move error checking to a separate error checking function
+    
+    charGuess = Character.toUpperCase(charGuess);
+    if (wordToGuess.indexOf(charGuess) >= 0) {
+      this.guessedLetters.add(charGuess);
       return true;
     } else {
-      this.guessedLetters.add(guess);
+      this.guessedLetters.add(charGuess);
       this.remainingAttempts--;
       return false;
     }

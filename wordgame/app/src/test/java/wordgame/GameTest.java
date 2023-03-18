@@ -26,7 +26,7 @@ public class GameTest {
     when(mockedWordGenerator.getRandomWordFromDictionary()).thenReturn("LIGHT");
     Masker mockedMasker = mock(Masker.class);
     Game game = new Game(mockedWordGenerator, mockedMasker);
-    assertEquals(game.guessLetter('A'), false);
+    assertEquals(game.guessLetter("A"), false);
   }
   
   @Test public void testTwoIncorrectGuessLetters() {
@@ -34,8 +34,8 @@ public class GameTest {
     when(mockedWordGenerator.getRandomWordFromDictionary()).thenReturn("SHOWER");
     Masker mockedMasker = mock(Masker.class);
     Game game = new Game(mockedWordGenerator, mockedMasker);
-    game.guessLetter('A');
-    assertEquals(game.guessLetter('B'), false);
+    game.guessLetter("A");
+    assertEquals(game.guessLetter("B"), false);
   }
 
   @Test public void testOneCorrectGuessLetter() {
@@ -43,7 +43,7 @@ public class GameTest {
     when(mockedWordGenerator.getRandomWordFromDictionary()).thenReturn("BELT");
     Masker mockedMasker = mock(Masker.class);
     Game game = new Game(mockedWordGenerator, mockedMasker);
-    assertEquals(game.guessLetter('B'), true);
+    assertEquals(game.guessLetter("B"), true);
   }
 
   @Test public void testLowerCaseCorrectGuessLetter() {
@@ -51,7 +51,7 @@ public class GameTest {
     when(mockedWordGenerator.getRandomWordFromDictionary()).thenReturn("BELT");
     Masker mockedMasker = mock(Masker.class);
     Game game = new Game(mockedWordGenerator, mockedMasker);
-    assertEquals(game.guessLetter('e'), true);
+    assertEquals(game.guessLetter("e"), true);
   }
 
   @Test public void testIncorrectAndCorrectGuessLetters() {
@@ -59,8 +59,8 @@ public class GameTest {
     when(mockedWordGenerator.getRandomWordFromDictionary()).thenReturn("HOUSE");
     Masker mockedMasker = mock(Masker.class);
     Game game = new Game(mockedWordGenerator, mockedMasker);
-    game.guessLetter('C');
-    assertEquals(game.guessLetter('U'), true);
+    game.guessLetter("C");
+    assertEquals(game.guessLetter("U"), true);
   }
 
   @Test public void testGuessedLettersAreStored() {
@@ -68,8 +68,8 @@ public class GameTest {
     when(mockedWordGenerator.getRandomWordFromDictionary()).thenReturn("ALPHABET");
     Masker mockedMasker = mock(Masker.class);
     Game game = new Game(mockedWordGenerator, mockedMasker);
-    game.guessLetter('A');
-    game.guessLetter('C');
+    game.guessLetter("A");
+    game.guessLetter("C");
     ArrayList<Character> expectedChars = new ArrayList<Character>();
     expectedChars.add('A');
     expectedChars.add('C');
@@ -81,7 +81,7 @@ public class GameTest {
     when(mockedWordGenerator.getRandomWordFromDictionary()).thenReturn("TEST");
     Masker mockedMasker = mock(Masker.class);
     Game game = new Game(mockedWordGenerator, mockedMasker);
-    game.guessLetter('A');
+    game.guessLetter("A");
     assertEquals(game.isGameLost(), false);
   }
 
@@ -90,16 +90,16 @@ public class GameTest {
     when(mockedWordGenerator.getRandomWordFromDictionary()).thenReturn("TEST");
     Masker mockedMasker = mock(Masker.class);
     Game game = new Game(mockedWordGenerator, mockedMasker);
-    game.guessLetter('A');
-    game.guessLetter('B');
-    game.guessLetter('C');
-    game.guessLetter('D');
-    game.guessLetter('A');
-    game.guessLetter('B');
-    game.guessLetter('C');
-    game.guessLetter('D');
-    game.guessLetter('A');
-    game.guessLetter('B');
+    game.guessLetter("A");
+    game.guessLetter("B");
+    game.guessLetter("C");
+    game.guessLetter("D");
+    game.guessLetter("A");
+    game.guessLetter("B");
+    game.guessLetter("C");
+    game.guessLetter("D");
+    game.guessLetter("A");
+    game.guessLetter("B");
     assertEquals(game.isGameLost(), true);
   }
 
@@ -111,7 +111,7 @@ public class GameTest {
     guessedLetters.add('A');
     when(mockedMasker.getHiddenWord("BLAH", guessedLetters)).thenReturn("B_A_");
     Game game = new Game(mockedWordGenerator, mockedMasker);
-    game.guessLetter('A');
+    game.guessLetter("A");
     assertEquals(game.isGameWon(), false);
   }
 
@@ -126,10 +126,10 @@ public class GameTest {
     guessedLetters.add('H');
     when(mockedMasker.getHiddenWord("BLAH", guessedLetters)).thenReturn("BLAH");
     Game game = new Game(mockedWordGenerator, mockedMasker);
-    game.guessLetter('B');
-    game.guessLetter('L');
-    game.guessLetter('A');
-    game.guessLetter('H');
+    game.guessLetter("B");
+    game.guessLetter("L");
+    game.guessLetter("A");
+    game.guessLetter("H");
     assertEquals(game.isGameWon(), true);
   }
 
@@ -145,11 +145,43 @@ public class GameTest {
     guessedLetters.add('D');
     when(mockedMasker.getHiddenWord("LONDON", guessedLetters)).thenReturn("LONDON");
     Game game = new Game(mockedWordGenerator, mockedMasker);
-    game.guessLetter('L');
-    game.guessLetter('O');
-    game.guessLetter('N');
-    game.guessLetter('E');
-    game.guessLetter('D');
+    game.guessLetter("L");
+    game.guessLetter("O");
+    game.guessLetter("N");
+    game.guessLetter("E");
+    game.guessLetter("D");
     assertEquals(game.isGameWon(), true);
+  }
+
+  @Test public void throwExceptionIfGuessedCharacterIsNumber() {
+    WordGenerator mockedWordGenerator = mock(WordGenerator.class);
+    when(mockedWordGenerator.getRandomWordFromDictionary()).thenReturn("TEST");
+    Masker mockedMasker = mock(Masker.class);
+    Game game = new Game(mockedWordGenerator, mockedMasker);
+    
+    Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+      game.guessLetter("1");
+    });
+
+    String expectedMessage = "Please only enter letters";
+    String actualMessage = exception.getMessage();
+
+    assertTrue(actualMessage.contains(expectedMessage));
+  }
+
+  @Test public void throwExceptionIfGuessedCharacterIsPunctuation() {
+    WordGenerator mockedWordGenerator = mock(WordGenerator.class);
+    when(mockedWordGenerator.getRandomWordFromDictionary()).thenReturn("TEST");
+    Masker mockedMasker = mock(Masker.class);
+    Game game = new Game(mockedWordGenerator, mockedMasker);
+    
+    Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+      game.guessLetter(",");
+    });
+
+    String expectedMessage = "Please only enter letters";
+    String actualMessage = exception.getMessage();
+
+    assertTrue(actualMessage.contains(expectedMessage));
   }
 }

@@ -14,7 +14,7 @@ public class App {
         do {
             System.out.println(game.getWordToGuess());
             System.out.println("Enter a letter to make a guess (" + game.getRemainingAttempts() + " attempts remaining):");
-            Character guess = (scanner.nextLine()).charAt(0);
+            String guess = scanner.nextLine();
             Boolean result = game.guessLetter(guess);
             if (result) {
                 System.out.println("Right!");
