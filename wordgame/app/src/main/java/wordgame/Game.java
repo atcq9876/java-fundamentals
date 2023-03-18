@@ -12,21 +12,11 @@ public class Game {
     this.wordToGuess = wordGenerator.getRandomWordFromDictionary();
   }
 
-  public static void main(String[] args) {}
-
-public String getWordToGuess() {
-  StringBuilder hiddenWordSB = new StringBuilder();
-  for (int i = 0; i < this.wordToGuess.length(); i++) {
-    if (i == 0) {
-      hiddenWordSB.append(wordToGuess.charAt(0));
-    } else if (this.guessedLetters.contains(this.wordToGuess.charAt(i))) {
-      hiddenWordSB.append(wordToGuess.charAt(i));
-    } else {
-      hiddenWordSB.append("_");
-    }
+  public String getWordToGuess() {
+    Masker masker = new Masker();
+    String hiddenWord = masker.getHiddenWord(wordToGuess, guessedLetters);
+    return hiddenWord;
   }
-  return hiddenWordSB.toString();
-}
 
   public Integer getRemainingAttempts() {
     return this.remainingAttempts;
@@ -41,7 +31,7 @@ public String getWordToGuess() {
   }
 
   public Boolean guessLetter(Character guess) {
-    // Add some errot checking for input, e.g., don't allow user to enter empty string
+    // Add some error checking for input, e.g., don't allow user to enter empty string
     // Could do this in a separate error checking function
     guess = Character.toUpperCase(guess);
     if (wordToGuess.indexOf(guess) >= 0) {
