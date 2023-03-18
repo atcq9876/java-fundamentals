@@ -7,13 +7,14 @@ public class Game {
   Integer remainingAttempts = 10;
   ArrayList<Character> guessedLetters = new ArrayList<Character>();
   String wordToGuess;
+  Masker masker;
   
-  Game(WordGenerator wordGenerator) {
+  Game(WordGenerator wordGenerator, Masker masker) {
     this.wordToGuess = wordGenerator.getRandomWordFromDictionary();
+    this.masker = masker;
   }
 
   public String getWordToGuess() {
-    Masker masker = new Masker();
     String hiddenWord = masker.getHiddenWord(wordToGuess, guessedLetters);
     return hiddenWord;
   }
@@ -32,6 +33,7 @@ public class Game {
 
   public Boolean guessLetter(Character guess) {
     // Add some error checking for input, e.g., don't allow user to enter empty string
+    // Error checking: only take one character
     // Could do this in a separate error checking function
     guess = Character.toUpperCase(guess);
     if (wordToGuess.indexOf(guess) >= 0) {
@@ -40,7 +42,6 @@ public class Game {
     } else {
       this.guessedLetters.add(guess);
       this.remainingAttempts--;
-      this.isGameLost();
       return false;
     }
   }
