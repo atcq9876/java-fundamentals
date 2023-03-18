@@ -3,11 +3,10 @@ package wordgame;
 import java.util.ArrayList;
 
 public class Game {
-  // Consider making these instance variables private
-  Integer remainingAttempts = 10;
-  ArrayList<Character> guessedLetters = new ArrayList<Character>();
-  String wordToGuess;
-  Masker masker;
+  private Masker masker;
+  private String wordToGuess;
+  private Integer remainingAttempts = 10;
+  private ArrayList<Character> guessedLetters = new ArrayList<Character>();
   
   Game(WordGenerator wordGenerator, Masker masker) {
     this.wordToGuess = wordGenerator.getRandomWordFromDictionary();
@@ -41,6 +40,10 @@ public class Game {
       this.remainingAttempts--;
       return false;
     }
+  }
+
+  public ArrayList<Character> getGuessedLetters() {
+    return this.guessedLetters;
   }
 
   private Character validateGuessedLetter(String guess) {

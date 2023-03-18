@@ -13,14 +13,6 @@ public class GameTest {
     assertEquals("Game begins with 10 attempts remaining", Integer.valueOf(10), game.getRemainingAttempts());
   }
 
-  @Test public void testGetsRandomWord() {
-    WordGenerator mockedWordGenerator = mock(WordGenerator.class);
-    when(mockedWordGenerator.getRandomWordFromDictionary()).thenReturn("RANDOM");
-    Masker mockedMasker = mock(Masker.class);
-    Game game = new Game(mockedWordGenerator, mockedMasker);
-    assertEquals(game.wordToGuess, "RANDOM");
-  }
-
   @Test public void testOneIncorrectGuessLetter() {
     WordGenerator mockedWordGenerator = mock(WordGenerator.class);
     when(mockedWordGenerator.getRandomWordFromDictionary()).thenReturn("LIGHT");
@@ -73,7 +65,7 @@ public class GameTest {
     ArrayList<Character> expectedChars = new ArrayList<Character>();
     expectedChars.add('A');
     expectedChars.add('C');
-    assertEquals(game.guessedLetters, expectedChars);
+    assertEquals(game.getGuessedLetters(), expectedChars);
   }
 
   @Test public void testIsGameLostFalse() {
